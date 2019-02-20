@@ -1,0 +1,20 @@
+﻿#### Commands for Package Manager Console:
+
+//When First Starting DB:
+enable-migrations
+enable-migrations -force
+
+// After Changing Model
+add-migration MIGRATION_NAME_HERE
+update-database
+
+and build project (ctrl+shift+b)
+
+
+
+
+#### Connection line for testing (add in Web.config):
+
+<connectionStrings>
+  <add name="DefaultConnection" connectionString="data source=(LocalDB)\MSSQLLocalDB; initial catalog=InvoiceApp; integrated security=SSPI" providerName="System.Data.SqlClient"/>
+</connectionStrings>

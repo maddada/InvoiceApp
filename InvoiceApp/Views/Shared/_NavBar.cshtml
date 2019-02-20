@@ -1,0 +1,26 @@
+﻿<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <div class="navbar-logo-container">
+                <a href="@Url.Action("Index", "Home")"><img src="/Content/Images/invoiceme-logo-200px.png" /></a>
+            </div>
+
+            @*@Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})*@
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a id="Customers" href="@Url.Action("Index", "Customers")">Customers</a></li>
+                <li><a id="Products" href="@Url.Action("Index", "Products")">Products</a></li>
+                <li><a id="Create" href="@Url.Action("Create", "Invoices")">New Invoice</a></li>
+                <li><a id="Invoices" href="@Url.Action("Index", "Invoices")">Report</a></li>
+                <li><a id="About" href="@Url.Action("About", "Home")">About</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

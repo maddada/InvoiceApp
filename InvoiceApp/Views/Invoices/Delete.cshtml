@@ -1,0 +1,37 @@
+﻿@model InvoiceApp.Models.Invoice
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div class="spacer"></div>
+<h4>Are you sure you want to delete this Invoice?</h4>
+<div>
+    <hr />
+    
+    <strong>@Html.DisplayNameFor(model => model.Id):</strong>
+    @Html.DisplayFor(model => model.Id)
+    <br />
+    <strong>@Html.DisplayNameFor(model => model.Date):</strong>
+    @Html.DisplayFor(model => model.Date)
+    <br />
+    <strong>@Html.DisplayNameFor(model => model.Description):</strong>
+    @Html.DisplayFor(model => model.Description)
+    <br/>
+    <strong>@Html.DisplayNameFor(model => model.PaymentMethod):</strong>
+    @Html.DisplayFor(model => model.PaymentMethod)
+
+    <div class="spacer"></div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default btn-danger" />
+            <a href="@Url.Action("Index", "Invoices")" class="btn btn-default">Cancel</a>
+        </div>
+    }
+</div>
+
+

@@ -1,0 +1,108 @@
+﻿@model InvoiceApp.ViewModels.InvoicesViewModel
+@using System.Diagnostics
+
+@{
+    ViewBag.Title = "Create Invoice";
+}
+
+<div class="spacer"></div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <h2>Create an Invoice</h2>
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <p class="form-group">
+            <label class="control-label col-md-2 text-bold">Details:</label>
+        </p>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Date*</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Invoice.Date, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Invoice.Date, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Customer Name*</label>
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Invoice.CustomerId, new SelectList(Model.Customers, "Id", "Name"), "Select a Customer..", new { @class = "form-control", required = "required" })
+
+                @Html.ValidationMessageFor(model => model.Invoice.CustomerId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Invoice.Description, new { @class = "control-label col-md-2 " })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Invoice.Description, new { htmlAttributes = new { @class = "form-control" }})
+                @Html.ValidationMessageFor(model => model.Invoice.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Payment Method*</label>
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.Invoice.PaymentMethod, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Invoice.PaymentMethod, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <p class="form-group">
+            <label class="control-label col-md-2 text-bold">Items:</label>
+        </p>
+
+        @for (var i = 0; i < 3; i++)
+        {
+            <div class="form-group">
+
+                @if (i == 0)
+                { // First item is required
+                    <label class="control-label col-md-2 ">Item @(i + 1)*</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.InvoiceItems[i].ProductId, new SelectList(Model.Products, "Id", "Name"), "Select Item and Quantity..", new { @class = "form-control", required = "required" })
+                    </div>
+                }
+
+                else
+                { // Other items aren't required.
+                    <label class="control-label col-md-2 ">Item @(i + 1)</label>
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(m => m.InvoiceItems[i].ProductId, new SelectList(Model.Products, "Id", "Name"), "Select Item and Quantity..", new { @class = "form-control" })
+                    </div>
+                }
+                <div class="col-md-10">
+                    @Html.EditorFor(m => m.InvoiceItems[i].Qty, new { htmlAttributes = new { @class = "form-control", @min = "1", @max = "20", @Value = 1 } })
+                </div>
+            </div>
+        }
+
+        @* Note: Could make it take more items easily, but simplified.
+            <div>
+                @{
+                    var newItem = new InvoiceItem();
+                    <a class="btn btn-success" onclick="@{items.Add(newItem)}"></a>
+                }
+            </div>
+        *@
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" id="submit-button" />
+                <a href="@Url.Action("Index", "Invoices")" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    </div>
+}
+
+@*@Scripts.Render("~/bundles/jquery")*@
+@*@Scripts.Render("~/bundles/jqueryval")*@

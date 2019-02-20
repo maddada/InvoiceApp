@@ -1,0 +1,81 @@
+﻿@model InvoiceApp.ViewModels.InvoicesViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div class="spacer"></div>
+<h3>Invoice Details</h3>
+<div>
+    <hr />
+    <p>
+        <strong>Id:</strong>
+        @Html.DisplayFor(m => m.Invoice.Id)
+    </p>
+    <p>
+        <strong>Date:</strong>
+        @Html.DisplayFor(m => m.Invoice.Date)
+    </p>
+    <p>
+        <strong>Customer:</strong>
+        @Html.DisplayFor(m => m.Invoice.Customer.Name)
+    <p>
+        <strong>Description:</strong>
+        @Html.DisplayFor(m => m.Invoice.Description)
+    </p>
+
+    <p>
+        <strong>Payment Method:</strong>
+        @Html.DisplayFor(m => m.Invoice.PaymentMethod)
+    </p>
+    <p>
+        <strong>Amount:</strong>
+        @Html.DisplayFor(m => m.Invoice.Amount)
+    </p>
+    
+    <div class="spacer"></div>
+
+    @{int i = 1;}
+
+    <table class="table table-hover details-table top-margin">
+
+        <tr class="info">
+            <th>#</th>
+            <th>Product Name</th>
+            <th class="text-center">Qty</th>
+            <th class="text-center">Price</th>
+            <th class="text-right">Total</th>
+        </tr>
+
+        
+        @foreach (var item in Model.InvoiceItems)
+        {
+            <tr class="details-table-row">
+                <th>@i</th>
+                <th>@item.Product.Name</th>
+                <th class="text-center">@item.Qty</th>
+                <th class="text-center">@item.Price</th>
+                <th class="text-right">@(item.Price * item.Qty)</th>
+            </tr>
+
+            i++;
+        }
+    </table>
+    
+    <div class="spacer"></div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <a href="javascript:void(0);" onclick="window.print();" class="btn btn-default hide-on-print"><i class="fa fa-print"></i>&nbsp;&nbsp;Print</a>
+
+            <a href="@Url.Action("Edit", "Invoices", new {id = Model.Invoice.Id})" class="btn btn-default hide-on-print"><i class="fa fa-edit"></i>&nbsp;&nbsp;Edit</a>
+
+            <a href="@Url.Action("Index", "Invoices")" class="btn btn-default hide-on-print">Go Back</a>
+        </div>
+    }
+</div>
+

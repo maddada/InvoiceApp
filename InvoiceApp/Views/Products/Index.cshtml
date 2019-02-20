@@ -1,0 +1,68 @@
+﻿@model IEnumerable<InvoiceApp.Models.Product>
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2 class="page-title top-margin">Products</h2>
+
+@if (!Model.Any())
+{
+    <div class="text-center top-margin">
+        <p>No Products to Display!</p>
+        <a class="btn btn-info" href="@Url.Action("Create", "Products")"><i class="fa fa-plus"></i>&nbsp;&nbsp;Add</a>
+        @*@Html.ActionLink("Add", "Create", null, new { @ })*@
+    </div>
+
+}
+
+@if (Model.Any())
+{
+
+    <table class="table table-responsive table-hover top-margin">
+        <tr class="info">
+            <th >
+                #
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th class="action-heading">
+                @*Actions*@
+            </th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="action-table-cell">
+                    <a class="btn btn-info" href="@Url.Action("Edit", "Products", new {id = item.Id})"><i class="fa fa-edit"></i></a>
+
+                    <a class="btn btn-info" href="@Url.Action("Delete", "Products", new {id = item.Id})"><i class="fa fa-close"></i></a>
+
+                </td>
+            </tr>
+        }
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="action-table-cell">@Html.ActionLink("Add New", "Create", null, new {@class = "btn btn-success"})</td>
+        </tr>
+    </table>
+
+}

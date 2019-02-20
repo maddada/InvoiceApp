@@ -1,0 +1,153 @@
+﻿
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+* {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* 
+   Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column.
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+.page-title {
+    text-align: center;
+}
+
+.navbar-default .navbar-toggle:focus {
+    background-color: white;
+}
+
+.top-margin { 
+    margin-top: 20px; 
+}
+
+
+.navbar-logo-container {
+    height: 50px;
+    dispay: table-cell;
+    vertical-align: middle
+}
+
+/* !important is Needed for Overriding Some Bootstrap 3 Properties */
+
+.navbar-header img {
+    margin-top: 4px;
+    height: 40px;
+    margin-right: 40px;
+    opacity: 1;
+    transition: opacity 0.4s;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+}
+
+.navbar-header img:hover {
+    opacity: 0.7;
+}
+
+.navbar li {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 1020px) {
+    .navbar li {
+        font-size: 16px;
+    }
+}
+
+navbar li a {
+    transition: color 0.8s;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+}
+
+navbar li a:hover {
+    color: #158CBA !important;
+}
+
+.navbar li a.active {
+    color: #106D91 !important;
+    font-weight: bold;
+}
+
+.text-weight-400 {
+    font-weight: 400 !important;
+}
+
+.text-bold {
+    font-weight: bold !important;
+}
+
+table th {
+    font-size: 18px;
+}
+
+table tr td {
+    font-size: 18px;
+    vertical-align: middle !important;
+}
+
+.action-heading {
+    text-align: center;
+    width: 105px !important;
+}
+
+.action-table-cell {
+    text-align: right;
+}
+
+.spacer {
+    padding-top: 30px;
+}
+
+.clickable * {
+    cursor: pointer !important;
+}
+
+@media print {
+    .hide-on-print {
+        display: none;
+    }
+}
+
+.details-table {
+    width: 100%;
+    border: 1px solid #75CAEB;
+}
+
+@media print {
+    .details-table {
+        border: none;
+    }
+}
+
+h1,h2,h3,h4,label,.nav * {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none !important;
+}
